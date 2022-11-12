@@ -21,7 +21,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var buttonStop : Button
 
     private lateinit var countDownTimer : CountDownTimer
-    var timeLeftInMillis : Long = 0
+    var startTime : Long = 0
+    var timeLeftInMillis : Long = startTime
     var isTimerRunning : Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -156,10 +157,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun pauseTimer() {
-        TODO("Not yet implemented")
+        countDownTimer.cancel()
+        isTimerRunning = false;
+        buttonStart.isEnabled = true
     }
 
     private fun stopTimer() {
-        TODO("Not yet implemented")
+        countDownTimer.cancel()
+        timeLeftInMillis = startTime
+        updateCountDownText()
+        isTimerRunning = false;
+        buttonStart.isEnabled = true
     }
 }
