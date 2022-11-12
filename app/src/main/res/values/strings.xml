@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">CountDownTimer</string>
+    <string name="stopButton">Stop</string>
+    <string name="pauseButton">Pause</string>
+    <string name="startButton">Start</string>
+    <string name="TextView1">0</string>
+    <string name="TextView2">0</string>
+    <string name="dots">:</string>
+    <string name="TextView3">0</string>
+    <string name="TextView4">0</string>
+    <string name="NumberAdd1">+</string>
+    <string name="NumberAdd2">+</string>
+    <string name="NumberAdd3">+</string>
+    <string name="NumberAdd4">+</string>
+    <string name="NumberSub1">-</string>
+    <string name="NumberSub2">-</string>
+    <string name="NumberSub3">-</string>
+</resources>
