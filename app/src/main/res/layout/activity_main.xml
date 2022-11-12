@@ -96,7 +96,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/NumberAdd1"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:text="@string/NumberAdd1"
@@ -105,7 +105,7 @@
         app:layout_constraintStart_toStartOf="@+id/TextView1" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/NumberAdd2"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:text="@string/NumberAdd2"
@@ -114,7 +114,7 @@
         app:layout_constraintStart_toStartOf="@+id/TextView2" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/NumberAdd3"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:text="@string/NumberAdd3"
@@ -123,17 +123,17 @@
         app:layout_constraintStart_toStartOf="@+id/TextView3" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/NumberAdd4"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:text="@string/NumberAdd4"
         app:layout_constraintBottom_toTopOf="@+id/TextView4"
         app:layout_constraintEnd_toEndOf="@+id/TextView4"
-        app:layout_constraintStart_toEndOf="@+id/button3"
+        app:layout_constraintStart_toEndOf="@+id/NumberAdd3"
         app:layout_constraintStart_toStartOf="@+id/TextView4" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/NumberSub1"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:text="@string/NumberSub1"
@@ -142,7 +142,7 @@
         app:layout_constraintTop_toBottomOf="@+id/TextView1" />
 
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/NumberSub2"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:text="@string/NumberSub2"
@@ -151,7 +151,7 @@
         app:layout_constraintTop_toBottomOf="@+id/TextView2" />
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/NumberSub3"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:text="@string/NumberSub3"
@@ -160,10 +160,10 @@
         app:layout_constraintTop_toBottomOf="@+id/TextView3" />
 
     <Button
-        android:id="@+id/button8"
+        android:id="@+id/NumberSub4"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:text="@string/NumberSub3"
+        android:text="@string/NumberSub4"
         app:layout_constraintEnd_toEndOf="@+id/TextView4"
         app:layout_constraintStart_toStartOf="@+id/TextView4"
         app:layout_constraintTop_toBottomOf="@+id/TextView4" />
