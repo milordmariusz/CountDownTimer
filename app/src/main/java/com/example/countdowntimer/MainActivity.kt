@@ -4,26 +4,25 @@ import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.view.View
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import java.lang.Integer.parseInt
 
 class MainActivity : AppCompatActivity() {
-    lateinit var textViewNumber1 : TextView
-    lateinit var textViewNumber2 : TextView
-    lateinit var textViewNumber3 : TextView
-    lateinit var textViewNumber4 : TextView
+    private lateinit var textViewNumber1 : TextView
+    private lateinit var textViewNumber2 : TextView
+    private lateinit var textViewNumber3 : TextView
+    private lateinit var textViewNumber4 : TextView
 
-    lateinit var buttonStart : Button
-    lateinit var buttonPause : Button
-    lateinit var buttonStop : Button
+    private lateinit var buttonStart : Button
+    private lateinit var buttonPause : Button
+    private lateinit var buttonStop : Button
 
     private lateinit var countDownTimer : CountDownTimer
-    var startTime : Long = 0
+    private var startTime : Long = 0
     var timeLeftInMillis : Long = startTime
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -37,15 +36,15 @@ class MainActivity : AppCompatActivity() {
         buttonPause = findViewById(R.id.pauseButton)
         buttonStop = findViewById(R.id.stopButton)
 
-        var buttonNumberAdd1 = findViewById<Button>(R.id.NumberAdd1)
-        var buttonNumberAdd2 = findViewById<Button>(R.id.NumberAdd2)
-        var buttonNumberAdd3 = findViewById<Button>(R.id.NumberAdd3)
-        var buttonNumberAdd4 = findViewById<Button>(R.id.NumberAdd4)
+        val buttonNumberAdd1 = findViewById<Button>(R.id.NumberAdd1)
+        val buttonNumberAdd2 = findViewById<Button>(R.id.NumberAdd2)
+        val buttonNumberAdd3 = findViewById<Button>(R.id.NumberAdd3)
+        val buttonNumberAdd4 = findViewById<Button>(R.id.NumberAdd4)
 
-        var buttonNumberSub1 = findViewById<Button>(R.id.NumberSub1)
-        var buttonNumberSub2 = findViewById<Button>(R.id.NumberSub2)
-        var buttonNumberSub3 = findViewById<Button>(R.id.NumberSub3)
-        var buttonNumberSub4 = findViewById<Button>(R.id.NumberSub4)
+        val buttonNumberSub1 = findViewById<Button>(R.id.NumberSub1)
+        val buttonNumberSub2 = findViewById<Button>(R.id.NumberSub2)
+        val buttonNumberSub3 = findViewById<Button>(R.id.NumberSub3)
+        val buttonNumberSub4 = findViewById<Button>(R.id.NumberSub4)
 
         buttonStart.setOnClickListener {
             startTimer()
@@ -63,6 +62,7 @@ class MainActivity : AppCompatActivity() {
             } else {
                 textViewNumber1.text = (parseInt(textViewNumber1.text as String) + 1).toString()
             }
+            updateButtons()
         }
         buttonNumberAdd2.setOnClickListener {
             if (textViewNumber2.text == "9") {
@@ -70,6 +70,7 @@ class MainActivity : AppCompatActivity() {
             } else {
                 textViewNumber2.text = (parseInt(textViewNumber2.text as String) + 1).toString()
             }
+            updateButtons()
         }
         buttonNumberAdd3.setOnClickListener {
             if (textViewNumber3.text == "5") {
@@ -77,6 +78,7 @@ class MainActivity : AppCompatActivity() {
             } else {
                 textViewNumber3.text = (parseInt(textViewNumber3.text as String) + 1).toString()
             }
+            updateButtons()
         }
         buttonNumberAdd4.setOnClickListener {
             if (textViewNumber4.text == "9") {
@@ -84,6 +86,7 @@ class MainActivity : AppCompatActivity() {
             } else {
                 textViewNumber4.text = (parseInt(textViewNumber4.text as String) + 1).toString()
             }
+            updateButtons()
         }
 
         buttonNumberSub1.setOnClickListener {
@@ -92,6 +95,7 @@ class MainActivity : AppCompatActivity() {
             } else {
                 textViewNumber1.text = (parseInt(textViewNumber1.text as String) - 1).toString()
             }
+            updateButtons()
         }
         buttonNumberSub2.setOnClickListener {
             if (textViewNumber2.text == "0") {
@@ -99,6 +103,7 @@ class MainActivity : AppCompatActivity() {
             } else {
                 textViewNumber2.text = (parseInt(textViewNumber2.text as String) - 1).toString()
             }
+            updateButtons()
         }
         buttonNumberSub3.setOnClickListener {
             if (textViewNumber3.text == "0") {
@@ -106,6 +111,7 @@ class MainActivity : AppCompatActivity() {
             } else {
                 textViewNumber3.text = (parseInt(textViewNumber3.text as String) - 1).toString()
             }
+            updateButtons()
         }
         buttonNumberSub4.setOnClickListener {
             if (textViewNumber4.text == "0") {
@@ -113,9 +119,22 @@ class MainActivity : AppCompatActivity() {
             } else {
                 textViewNumber4.text = (parseInt(textViewNumber4.text as String) - 1).toString()
             }
+            updateButtons()
         }
 
+        updateButtons()
         updateCountDownText()
+    }
+
+    private fun updateButtons() {
+        buttonStart.isEnabled = !isTimeGreaterThanZero()
+    }
+
+    private fun isTimeGreaterThanZero(): Boolean {
+        return textViewNumber1.text == "0" &&
+                textViewNumber2.text == "0" &&
+                textViewNumber3.text == "0" &&
+                textViewNumber4.text == "0"
     }
 
     private fun startTimer() {
@@ -135,8 +154,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateCountDownText() {
-        var minutes : Int = ((timeLeftInMillis / 1000) / 60).toInt()
-        var seconds : Int = ((timeLeftInMillis / 1000) % 60).toInt()
+        val minutes : Int = ((timeLeftInMillis / 1000) / 60).toInt()
+        val seconds : Int = ((timeLeftInMillis / 1000) % 60).toInt()
 
         textViewNumber1.text = (minutes / 10).toString()
         textViewNumber2.text = (minutes % 10).toString()
