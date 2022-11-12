@@ -23,7 +23,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var countDownTimer : CountDownTimer
     var startTime : Long = 0
     var timeLeftInMillis : Long = startTime
-    var isTimerRunning : Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -128,12 +127,10 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onFinish() {
-                isTimerRunning = false
                 buttonStart.isEnabled = true
             }
         }.start()
 
-        isTimerRunning = true
         buttonStart.isEnabled = false
     }
 
@@ -149,8 +146,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun countTimeToMillis(): Long {
         var  timeToMillis : Long = 0
-        timeToMillis += (textViewNumber1.text as String).toLong() * 6000000
-        timeToMillis += (textViewNumber2.text as String).toLong() * 600000
+        timeToMillis += (textViewNumber1.text as String).toLong() * 600000
+        timeToMillis += (textViewNumber2.text as String).toLong() * 60000
         timeToMillis += (textViewNumber3.text as String).toLong() * 10000
         timeToMillis += (textViewNumber4.text as String).toLong() * 1000
         return timeToMillis
@@ -158,7 +155,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun pauseTimer() {
         countDownTimer.cancel()
-        isTimerRunning = false;
         buttonStart.isEnabled = true
     }
 
@@ -166,7 +162,6 @@ class MainActivity : AppCompatActivity() {
         countDownTimer.cancel()
         timeLeftInMillis = startTime
         updateCountDownText()
-        isTimerRunning = false;
         buttonStart.isEnabled = true
     }
 }
