@@ -9,18 +9,31 @@ import android.widget.TextView
 import java.lang.Integer.parseInt
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var textViewNumber1 : TextView
-    private lateinit var textViewNumber2 : TextView
-    private lateinit var textViewNumber3 : TextView
-    private lateinit var textViewNumber4 : TextView
+    private lateinit var textViewNumber1: TextView
+    private lateinit var textViewNumber2: TextView
+    private lateinit var textViewNumber3: TextView
+    private lateinit var textViewNumber4: TextView
 
-    private lateinit var buttonStart : Button
-    private lateinit var buttonPause : Button
-    private lateinit var buttonStop : Button
+    private lateinit var buttonStart: Button
+    private lateinit var buttonPause: Button
+    private lateinit var buttonStop: Button
 
-    private lateinit var countDownTimer : CountDownTimer
-    private var startTime : Long = 0
-    var timeLeftInMillis : Long = startTime
+    lateinit var buttonNumberAdd1: Button
+    lateinit var buttonNumberAdd2: Button
+    lateinit var buttonNumberAdd3: Button
+    lateinit var buttonNumberAdd4: Button
+
+    lateinit var buttonNumberSub1: Button
+    lateinit var buttonNumberSub2: Button
+    lateinit var buttonNumberSub3: Button
+    lateinit var buttonNumberSub4: Button
+
+    var listOfButtons = listOf<Button>()
+
+
+    private lateinit var countDownTimer: CountDownTimer
+    private var startTime: Long = 0
+    var timeLeftInMillis: Long = startTime
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,15 +49,26 @@ class MainActivity : AppCompatActivity() {
         buttonPause = findViewById(R.id.pauseButton)
         buttonStop = findViewById(R.id.stopButton)
 
-        val buttonNumberAdd1 = findViewById<Button>(R.id.NumberAdd1)
-        val buttonNumberAdd2 = findViewById<Button>(R.id.NumberAdd2)
-        val buttonNumberAdd3 = findViewById<Button>(R.id.NumberAdd3)
-        val buttonNumberAdd4 = findViewById<Button>(R.id.NumberAdd4)
+        buttonNumberAdd1 = findViewById(R.id.NumberAdd1)
+        buttonNumberAdd2 = findViewById(R.id.NumberAdd2)
+        buttonNumberAdd3 = findViewById(R.id.NumberAdd3)
+        buttonNumberAdd4 = findViewById(R.id.NumberAdd4)
 
-        val buttonNumberSub1 = findViewById<Button>(R.id.NumberSub1)
-        val buttonNumberSub2 = findViewById<Button>(R.id.NumberSub2)
-        val buttonNumberSub3 = findViewById<Button>(R.id.NumberSub3)
-        val buttonNumberSub4 = findViewById<Button>(R.id.NumberSub4)
+        buttonNumberSub1 = findViewById(R.id.NumberSub1)
+        buttonNumberSub2 = findViewById(R.id.NumberSub2)
+        buttonNumberSub3 = findViewById(R.id.NumberSub3)
+        buttonNumberSub4 = findViewById(R.id.NumberSub4)
+
+        listOfButtons = listOf(
+            buttonNumberAdd1,
+            buttonNumberAdd2,
+            buttonNumberAdd3,
+            buttonNumberAdd4,
+            buttonNumberSub1,
+            buttonNumberSub2,
+            buttonNumberSub3,
+            buttonNumberSub4
+        )
 
         buttonStart.setOnClickListener {
             startTimer()
@@ -127,10 +151,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateButtons() {
-        buttonStart.isEnabled = !isTimeGreaterThanZero()
+        buttonStart.isEnabled = !isTimeEqualZero()
+        buttonPause.isEnabled = false
     }
 
-    private fun isTimeGreaterThanZero(): Boolean {
+    private fun isTimeEqualZero(): Boolean {
         return textViewNumber1.text == "0" &&
                 textViewNumber2.text == "0" &&
                 textViewNumber3.text == "0" &&
@@ -138,24 +163,41 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun startTimer() {
+        disableTimeManipulation()
         timeLeftInMillis = countTimeToMillis()
         countDownTimer = object : CountDownTimer(timeLeftInMillis, 1000) {
-            override fun onTick(millisUntilFinished : Long) {
+            override fun onTick(millisUntilFinished: Long) {
                 timeLeftInMillis = millisUntilFinished
                 updateCountDownText()
             }
 
             override fun onFinish() {
-                buttonStart.isEnabled = true
+                enableTimeManipulation()
+                updateButtons()
             }
         }.start()
 
         buttonStart.isEnabled = false
     }
 
+    private fun enableTimeManipulation() {
+        for (button in listOfButtons){
+            button.isEnabled = true
+        }
+        buttonPause.isEnabled = false
+
+    }
+
+    private fun disableTimeManipulation() {
+        for (button in listOfButtons){
+            button.isEnabled = false
+        }
+        buttonPause.isEnabled = true
+    }
+
     private fun updateCountDownText() {
-        val minutes : Int = ((timeLeftInMillis / 1000) / 60).toInt()
-        val seconds : Int = ((timeLeftInMillis / 1000) % 60).toInt()
+        val minutes: Int = ((timeLeftInMillis / 1000) / 60).toInt()
+        val seconds: Int = ((timeLeftInMillis / 1000) % 60).toInt()
 
         textViewNumber1.text = (minutes / 10).toString()
         textViewNumber2.text = (minutes % 10).toString()
@@ -164,7 +206,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun countTimeToMillis(): Long {
-        var  timeToMillis : Long = 0
+        var timeToMillis: Long = 0
         timeToMillis += (textViewNumber1.text as String).toLong() * 600000
         timeToMillis += (textViewNumber2.text as String).toLong() * 60000
         timeToMillis += (textViewNumber3.text as String).toLong() * 10000
@@ -174,13 +216,15 @@ class MainActivity : AppCompatActivity() {
 
     private fun pauseTimer() {
         countDownTimer.cancel()
-        buttonStart.isEnabled = true
+        enableTimeManipulation()
+        updateButtons()
     }
 
     private fun stopTimer() {
         countDownTimer.cancel()
+        enableTimeManipulation()
         timeLeftInMillis = startTime
         updateCountDownText()
-        buttonStart.isEnabled = true
+        updateButtons()
     }
 }
