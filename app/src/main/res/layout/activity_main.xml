@@ -45,7 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:text="@string/TextView1"
-        android:textSize="100sp"
+        android:textSize="80sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/TextView2"
         app:layout_constraintTop_toTopOf="parent" />
@@ -56,7 +56,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:text="@string/TextView2"
-        android:textSize="100sp"
+        android:textSize="80sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/dots"
         app:layout_constraintTop_toTopOf="parent" />
@@ -67,7 +67,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:text="@string/dots"
-        android:textSize="100sp"
+        android:textSize="80sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -79,7 +79,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:text="@string/TextView3"
-        android:textSize="100sp"
+        android:textSize="80sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/dots"
         app:layout_constraintTop_toTopOf="parent" />
@@ -90,14 +90,14 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:text="@string/TextView4"
-        android:textSize="100sp"
+        android:textSize="80sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/TextView3"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/NumberAdd1"
-        android:layout_width="50dp"
+        android:layout_width="45dp"
         android:layout_height="50dp"
         android:text="@string/NumberAdd1"
         app:layout_constraintBottom_toTopOf="@+id/TextView1"
@@ -106,7 +106,7 @@
 
     <Button
         android:id="@+id/NumberAdd2"
-        android:layout_width="50dp"
+        android:layout_width="45dp"
         android:layout_height="50dp"
         android:text="@string/NumberAdd2"
         app:layout_constraintBottom_toTopOf="@+id/TextView2"
@@ -115,7 +115,7 @@
 
     <Button
         android:id="@+id/NumberAdd3"
-        android:layout_width="50dp"
+        android:layout_width="45dp"
         android:layout_height="50dp"
         android:text="@string/NumberAdd3"
         app:layout_constraintBottom_toTopOf="@+id/TextView3"
@@ -124,7 +124,7 @@
 
     <Button
         android:id="@+id/NumberAdd4"
-        android:layout_width="50dp"
+        android:layout_width="45dp"
         android:layout_height="50dp"
         android:text="@string/NumberAdd4"
         app:layout_constraintBottom_toTopOf="@+id/TextView4"
@@ -134,7 +134,7 @@
 
     <Button
         android:id="@+id/NumberSub1"
-        android:layout_width="50dp"
+        android:layout_width="45dp"
         android:layout_height="50dp"
         android:text="@string/NumberSub1"
         app:layout_constraintEnd_toEndOf="@+id/TextView1"
@@ -143,7 +143,7 @@
 
     <Button
         android:id="@+id/NumberSub2"
-        android:layout_width="50dp"
+        android:layout_width="45dp"
         android:layout_height="50dp"
         android:text="@string/NumberSub2"
         app:layout_constraintEnd_toEndOf="@+id/TextView2"
@@ -152,7 +152,7 @@
 
     <Button
         android:id="@+id/NumberSub3"
-        android:layout_width="50dp"
+        android:layout_width="45dp"
         android:layout_height="50dp"
         android:text="@string/NumberSub3"
         app:layout_constraintEnd_toEndOf="@+id/TextView3"
@@ -161,7 +161,7 @@
 
     <Button
         android:id="@+id/NumberSub4"
-        android:layout_width="50dp"
+        android:layout_width="45dp"
         android:layout_height="50dp"
         android:text="@string/NumberSub4"
         app:layout_constraintEnd_toEndOf="@+id/TextView4"

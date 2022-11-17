@@ -1,11 +1,11 @@
 package com.example.countdowntimer
 
 import android.annotation.SuppressLint
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.widget.Button
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import java.lang.Integer.parseInt
 
 class MainActivity : AppCompatActivity() {
@@ -18,22 +18,23 @@ class MainActivity : AppCompatActivity() {
     private lateinit var buttonPause: Button
     private lateinit var buttonStop: Button
 
-    lateinit var buttonNumberAdd1: Button
-    lateinit var buttonNumberAdd2: Button
-    lateinit var buttonNumberAdd3: Button
-    lateinit var buttonNumberAdd4: Button
+    private lateinit var buttonNumberAdd1: Button
+    private lateinit var buttonNumberAdd2: Button
+    private lateinit var buttonNumberAdd3: Button
+    private lateinit var buttonNumberAdd4: Button
 
-    lateinit var buttonNumberSub1: Button
-    lateinit var buttonNumberSub2: Button
-    lateinit var buttonNumberSub3: Button
-    lateinit var buttonNumberSub4: Button
+    private lateinit var buttonNumberSub1: Button
+    private lateinit var buttonNumberSub2: Button
+    private lateinit var buttonNumberSub3: Button
+    private lateinit var buttonNumberSub4: Button
 
-    var listOfButtons = listOf<Button>()
+    private var listOfButtons = listOf<Button>()
 
 
     private lateinit var countDownTimer: CountDownTimer
     private var startTime: Long = 0
     var timeLeftInMillis: Long = startTime
+    private var isRunning : Boolean = false
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -177,6 +178,7 @@ class MainActivity : AppCompatActivity() {
             }
         }.start()
 
+        isRunning = true
         buttonStart.isEnabled = false
     }
 
@@ -215,16 +217,36 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun pauseTimer() {
+        isRunning = false
         countDownTimer.cancel()
         enableTimeManipulation()
         updateButtons()
     }
 
     private fun stopTimer() {
+        isRunning = false
         countDownTimer.cancel()
         enableTimeManipulation()
         timeLeftInMillis = startTime
         updateCountDownText()
         updateButtons()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putLong("timeLeft",timeLeftInMillis)
+        outState.putBoolean("isRunning", isRunning)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        timeLeftInMillis = savedInstanceState.getLong("timeLeft")
+        isRunning = savedInstanceState.getBoolean("isRunning")
+        updateCountDownText()
+        updateButtons()
+
+        if (isRunning){
+            startTimer()
+        }
     }
 }
